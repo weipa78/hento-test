@@ -1,0 +1,66 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  hento-sam
+
+  Sample SAM Template for hento-sam
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  CrosswordLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: lib/
+      CompatibleRuntimes:
+        - python3.9
+    Metadata:
+      BuildMethod: python3.9
+  HentoFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: app/
+      Handler: app.lambda_handler
+      Runtime: python3.9
+      Architectures:
+        - x86_64
+      FunctionUrlConfig:
+        AuthType: NONE
+        Cors:
+          AllowOrigins:
+            - "*"
+          AllowCredentials: true
+          AllowMethods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+          AllowHeaders:
+            - Content-Type
+      Layers:
+        - !Ref CrosswordLayer
+      Policies:
+      - Statement:
+        - Sid: SSMDescribeParametersPolicy
+          Effect: Allow
+          Action:
+            - dynamodb:*
+          Resource: 'arn:aws:dynamodb:ap-northeast-1:637137441573:table/HentoDev_Crossword'
+
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  HentoFunction:
+    Description: "Hento Lambda Function ARN"
+    Value: !GetAtt HentoFunction.Arn
+  HentoFunctionIamRole:
+    Description: "Implicit IAM Role created for Hento function"
+    Value: !GetAtt HentoFunctionRole.Arn
+  HentoFunctionUrl:
+    Description: "Function URLs endpoint"
+    Value: !GetAtt HentoFunctionUrl.FunctionUrl

@@ -1,0 +1,11 @@
+version = 0.1
+[staging]
+[staging.deploy]
+[staging.deploy.parameters]
+stack_name = "hento-sam"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1x4tdxv42vwnz"
+s3_prefix = "hento-sam"
+region = "ap-northeast-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+image_repositories = []

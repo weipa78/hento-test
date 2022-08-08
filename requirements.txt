@@ -1,0 +1,8 @@
+black
+boto3
+moto
+mypy
+pynamodb
+pytest
+pytest-mock
+requests

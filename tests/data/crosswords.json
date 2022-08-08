@@ -1,0 +1,40 @@
+[
+  {
+    "crossword_id": "4abe99c87a714fc8a7c7f5cdd43e4572",
+    "cols": 7,
+    "created_at": "2022-07-23T14:41:27.479185+0000",
+    "rows": 5,
+    "title": "test",
+    "updated_at": "2022-07-23T14:41:27.479194+0000",
+    "words": [
+      {
+        "answer": "きようたく",
+        "clue": "きようたくのヒント",
+        "col": 1,
+        "direction": 1,
+        "row": 0
+      },
+      {
+        "answer": "としみち",
+        "clue": "としみちのヒント",
+        "col": 3,
+        "direction": 0,
+        "row": 1
+      },
+      {
+        "answer": "しひよう",
+        "clue": "しひようのヒント",
+        "col": 4,
+        "direction": 1,
+        "row": 1
+      },
+      {
+        "answer": "ろくじゆう",
+        "clue": "ろくじゆうのヒント",
+        "col": 0,
+        "direction": 0,
+        "row": 4
+      }
+    ]
+  }
+]
